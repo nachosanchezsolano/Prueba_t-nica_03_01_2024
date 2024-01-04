@@ -38,17 +38,3 @@ def extraction_with_firefox(url,paths,sleep_time):
 
     finally:        
         driver.quit()
-
-
-url="https://cde.ucr.cjis.gov/LATEST/webapp/#/pages/home"
-
-path=["//a[@id='hr-docs-icon-action']",
-      "//*[@id='dwnnibrs-download-select']/button",
-      "//*[@id='nb-option-71']",
-      "//*[@id='dwnnibrsloc-select']/button",
-      "//*[@id='nb-option-97']",
-      "//*[@id='nibrs-download-button']"]
-
-download_time=3
-
-extraction_with_firefox(url,path,3)
