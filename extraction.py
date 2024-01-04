@@ -20,6 +20,8 @@ def extraction_with_firefox(url,paths,sleep_time):
     firefox_options = webdriver.FirefoxOptions()
     firefox_options.set_preference("browser.download.folderList", 2)
     firefox_options.set_preference("browser.download.dir",str(pathlib.Path.cwd()))
+    firefox_options.set_preference("--headless",False)
+
                                 
     driver = webdriver.Firefox(options=firefox_options)
     driver.get(url)
@@ -36,3 +38,5 @@ def extraction_with_firefox(url,paths,sleep_time):
 
     finally:        
         driver.quit()
+
+

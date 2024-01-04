@@ -1,6 +1,7 @@
 from zipfile import ZipFile
 import pandas as pd
 from extraction import extraction_with_firefox
+
 url="https://cde.ucr.cjis.gov/LATEST/webapp/#/pages/home"
 
 path=["//a[@id='hr-docs-icon-action']",
@@ -12,7 +13,7 @@ path=["//a[@id='hr-docs-icon-action']",
 
 download_time=3
 
-extraction_with_firefox(url,path,3)
+extraction_with_firefox(url=url,paths=path,sleep_time=3)
 
 with ZipFile('victims.zip', 'r') as file:
     with file.open("Victims_Age_by_Offense_Category_2022.xlsx") as excel_file:
