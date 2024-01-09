@@ -20,7 +20,7 @@ def extraction_with_firefox(url,paths,sleep_time):
     firefox_options = webdriver.FirefoxOptions()
     firefox_options.set_preference("browser.download.folderList", 2)
     firefox_options.set_preference("browser.download.dir",str(pathlib.Path.cwd()))
-    firefox_options.set_preference("--headless",False)
+    firefox_options.add_argument("--headless")
 
                                 
     driver = webdriver.Firefox(options=firefox_options)
@@ -29,7 +29,7 @@ def extraction_with_firefox(url,paths,sleep_time):
     try:
        for path in paths:
             id=re.search(r"'(.*?)'", path)
-            WebDriverWait(driver, 30).until(EC.visibility_of_element_located((By.ID, id.group(1))))
+            WebDriverWait(driver, 15).until(EC.visibility_of_element_located((By.ID, id.group(1))))
             
             click_process= driver.find_element(By.XPATH,path)
             click_process.click()
