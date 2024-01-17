@@ -46,7 +46,7 @@ df=df.rename(columns={"Unnamed: 0":"Offense Category",
                       "Unknown\nAge" : " Unknown Age"})
 
 property_crimes_index= df[df['Offense Category'] == 'Crimes Against Property'].index[0]
-print(property_crimes_index)
+
 df=df.iloc[property_crimes_index+1:-1]
 
 df=df.astype(int,errors="ignore")
