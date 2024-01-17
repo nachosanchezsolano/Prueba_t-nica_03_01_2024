@@ -37,10 +37,20 @@ con pandas para su limpieza y posteriormente se escribe en archivo .CSV
 """
 with ZipFile('victims.zip', 'r') as file:
     with file.open("Victims_Age_by_Offense_Category_2022.xlsx") as excel_file:
-        df = pd.read_excel(excel_file)
+        df = pd.read_excel(excel_file,header=4)
 
+df=df.rename(columns={"Unnamed: 0":"Offense Category",
+                      "Unnamed: 1" : "Total Victims",
+                      "10 and\nUnder" : "10 and Under",
+                      "66 and\nOver" : " 66 and Over",
+                      "Unknown\nAge" : " Unknown Age"})
 
-df = df.iloc[:-1]
-df = df[(df['Victims'] != 'Total') & (df['Victims'] != 'Crimes Against Persons') & (df['Victims'] != 'Crimes Against Property')]
+property_crimes_index= df[df['Offense Category'] == 'Crimes Against Property'].index[0]
+print(property_crimes_index)
+df=df.iloc[property_crimes_index+1:-1]
+
+df=df.astype(int,errors="ignore")
+
 print(df)
+
 df.to_csv("Victims_Age_by_Offense_Category_2022.csv", index=False)
